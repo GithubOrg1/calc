@@ -27,12 +27,12 @@ public class Calculator extends JFrame {
     Panel p1 = new Panel();
     private int num1;
     private int num2;
-    private String op;
+    private char op;
     private int result;
 
     public Calculator() {
         //creat JTextField
-        JTextField txt = new JTextField();
+        final JTextField txt = new JTextField();
         txt.setPreferredSize(new Dimension(400, 150));
         txt.setFont(new Font("Serif", Font.BOLD, 40));
 
@@ -113,7 +113,7 @@ public class Calculator extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     num1 = Integer.parseInt(str);
                     txt.setText(txt.getText() + "+");
-                    op = "+";
+                    op = '+';
                     str = "";
                 }
             });
@@ -123,7 +123,7 @@ public class Calculator extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     num1 = Integer.parseInt(str);
                     txt.setText(txt.getText() + "-");
-                    op = "-";
+                    op = '-';
                     str = "";
                 }
             });
@@ -133,7 +133,7 @@ public class Calculator extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     num1 = Integer.parseInt(str);
                     txt.setText(txt.getText() + "*");
-                    op = "*";
+                    op = '*';
                     str = "";
                 }
             });
@@ -143,7 +143,7 @@ public class Calculator extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     num1 = Integer.parseInt(str);
                     txt.setText(txt.getText() + "/");
-                    op = "/";
+                    op = '/';
                     str = "";
                 }
             });
@@ -155,22 +155,22 @@ public class Calculator extends JFrame {
                     num2 = Integer.parseInt(str);
 
                     switch (op) {
-                    case "+":
+                    case '+':
                         result = num1 + num2;
 
                         break;
 
-                    case "-":
+                    case '-':
                         result = num1 - num2;
 
                         break;
 
-                    case "*":
+                    case '*':
                         result = num1 * num2;
 
                         break;
 
-                    case "/":
+                    case '/':
                         result = num1 / num2;
 
                         break;
