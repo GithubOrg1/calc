@@ -23,17 +23,29 @@ public class Calculator extends JFrame {
 		{"1","2","3","+","4","5","6","-","7","8","9","*","0",".","=","/"};
 	private GridLayout gridLayout;
 	Panel p1 = new Panel();
-	private int num1;
-	private int num2;
+	private double num1;
+	private double num2;
 	private String op;
-	private int result;
+	private double result;
 
 	public Calculator(){
 		
 		//creat JTextField
 		JTextField txt=new JTextField();
 		txt.setPreferredSize(new Dimension(400,150));
-		txt.setFont(new Font("Serif",Font.BOLD,40));
+		txt.setFont(new Font("Serif",Font.PLAIN,40));
+		
+		JPanel p2 = new JPanel(new GridLayout (1, 2));
+		
+		JButton clear = new JButton("C");
+		clear.setFont(new Font("Serif",Font.PLAIN,20));
+		p2.add(clear);
+		
+		JButton back = new JButton("CE");
+		back.setFont(new Font("Serif",Font.PLAIN,20));
+		p2.add(back);
+		
+		p2.setPreferredSize(new Dimension(400,50));
 		
 		JPanel p1=new JPanel(new GridLayout(4,4,5,5));
 		buttons=new JButton[16];
@@ -41,6 +53,7 @@ public class Calculator extends JFrame {
 		{
 			buttons[count]=new JButton(names[count]);
 			p1.add(buttons[count]);
+			buttons[count].setFont(new Font("Serif",Font.PLAIN,20));
 		}
 		setLayout(gridLayout);
 		
@@ -119,7 +132,7 @@ public class Calculator extends JFrame {
 	buttons[3].addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e)
         {
-        	num1=Integer.parseInt(str);
+        	num1=Double.parseDouble(txt.getText());
         	txt.setText(txt.getText()+"+");
         	op="+";
         	str="";
@@ -130,7 +143,7 @@ public class Calculator extends JFrame {
 	 buttons[7].addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e)
          {
-        	 num1=Integer.parseInt(str);
+        	 num1=Double.parseDouble(txt.getText());
         	 txt.setText(txt.getText()+"-");
         	 op="-";
         	 str="";
@@ -141,7 +154,7 @@ public class Calculator extends JFrame {
 	 buttons[11].addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e)
 	        {
-	        	num1=Integer.parseInt(str);
+	        	num1=Double.parseDouble(txt.getText());
 	        	txt.setText(txt.getText()+"*");
 	        	op="*";
 	        	str="";
@@ -152,7 +165,7 @@ public class Calculator extends JFrame {
 		 buttons[15].addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e)
 		        {
-		        	num1=Integer.parseInt(str);
+		        	num1=Double.parseDouble(txt.getText());
 		        	txt.setText(txt.getText()+"/");
 		        	op="/";
 		        	str="";
@@ -164,7 +177,7 @@ public class Calculator extends JFrame {
 		 buttons[14].addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e)
 		        {
-		        	num2=Integer.parseInt(str);
+		        	num2=Double.parseDouble(str);
 		        	switch(op)
 		        	{
 		        	case "+":result=num1+num2;break;
@@ -172,27 +185,44 @@ public class Calculator extends JFrame {
 		        	case "*":result=num1*num2;break;
 		        	case "/":result=num1/num2;break;
 		        	}
-		        	txt.setText(String.format("%d", result));
+		        	txt.setText(Double.toString(result));
+		      
 		        }
 		    });
 		 
 		//--------------------------------------------------------------
-		 /*
+		 //dot
 		 buttons[13].addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e)
 		        {
 		        	txt.setText(txt.getText()+".");
-		        	op="/";
-		        	str="";
+		        	str+=".";
+		        }
+		    });
+		
+		 //--------------------------------------------------------------
+		 //clear
+		 clear.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e)
+		        {
+		        	txt.setText("");
+		        	str+="";
+		        }
+		    });
+		 
+		 /*//back
+		 back.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent e)
+		        {
+		        	str
 		        }
 		    });*/
-				
 		 
-		 
-		 JPanel p2=new JPanel(new BorderLayout());
-		 p2.add(txt,BorderLayout.NORTH);
-		 p2.add(p1,BorderLayout.CENTER);
-		 add(p2);
+		 JPanel p=new JPanel(new BorderLayout());
+		 p.add(txt,BorderLayout.NORTH);
+		 p.add(p1,BorderLayout.CENTER);
+		 p.add(p2,BorderLayout.SOUTH);
+		 add(p);
 		 setLayout (new GridLayout (1, 1));
 }
 
